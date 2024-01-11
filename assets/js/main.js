@@ -1,46 +1,8 @@
-jQuery(document).ready(function ($) {
+
+function runMainScript() {
     $('.js-select').niceSelect();
-    $(document).on('click', '.menu-btn', function () {
-        $(this).toggleClass('is-active');
-        $('.sidebar').toggleClass('is-show');
-    });
-    const mediaHeader = window.matchMedia('(max-width: 959px)');
-
-    function handleHeader(e) {
-        if (e.matches) {
-            $('.menu-btn').removeClass('is-active');
-            $('.sidebar').removeClass('is-show');
-            $(document).on('click', '.menu-btn', function () {
-                $('body').toggleClass('no-scroll');
-            });
-        } else {
-            $('.menu-btn').addClass('is-active');
-            $('.sidebar').addClass('is-show');
-            $('body').removeClass('no-scroll');
-        }
-    }
-
-
-
-
-
-
-
-
-
-    /////////////////////////////////////////////////////////////////
-    // Preloader
-    /////////////////////////////////////////////////////////////////
-
-    var $preloader = $('#page-preloader'),
-        $spinner = $preloader.find('.spinner-loader');
-    $spinner.fadeOut();
-    $preloader.delay(250).fadeOut('slow');
-
-
-
-    mediaHeader.addListener(handleHeader);
-    handleHeader(mediaHeader);
+    
+    
     const recommendSlider = new Swiper('.js-recommend .swiper', {
         slidesPerView: 1,
         spaceBetween: 40,
@@ -167,4 +129,40 @@ jQuery(document).ready(function ($) {
             swiper: gallerySmall
         }
     });
+}
+
+jQuery(document).ready(function ($) {
+    runMainScript();
+    $(document).on('click', '.menu-btn', function () {
+        $(this).toggleClass('is-active');
+        $('.sidebar').toggleClass('is-show');
+    });
+    const mediaHeader = window.matchMedia('(max-width: 959px)');
+    function handleHeader(e) {
+        if (e.matches) {
+            $('.menu-btn').removeClass('is-active');
+            $('.sidebar').removeClass('is-show');
+            $(document).on('click', '.menu-btn', function () {
+                $('body').toggleClass('no-scroll');
+            });
+        } else {
+            $('.menu-btn').addClass('is-active');
+            $('.sidebar').addClass('is-show');
+            $('body').removeClass('no-scroll');
+        }
+    }
+    
+
+
+    mediaHeader.addListener(handleHeader);
+    handleHeader(mediaHeader);
+    /////////////////////////////////////////////////////////////////
+    // Preloader
+    /////////////////////////////////////////////////////////////////
+
+    var $preloader = $('#page-preloader'),
+        $spinner = $preloader.find('.spinner-loader');
+    $spinner.fadeOut();
+    $preloader.delay(250).fadeOut('slow');
+
 });
