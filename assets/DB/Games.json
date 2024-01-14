@@ -1,0 +1,27 @@
+[
+    {
+       "id": 662316,
+       "price": 60,
+       "customImages": [
+          "path/to/game1/image1.jpg",
+          "path/to/game1/image2.jpg"
+       ]
+    },
+    {
+       "id": 415171,
+       "price": 29.99,
+       "customImages": [
+          "path/to/game2/image1.jpg",
+          "path/to/game2/image2.jpg"
+       ]
+    },
+    {
+       "id": 906547,
+       "price": 200,
+       "customImages": [
+          "path/to/game3/image1.jpg",
+          "path/to/game3/image2.jpg"
+       ]
+    }
+ ]
+ 

@@ -1927,23 +1927,6 @@ a:hover {
     height: 60px;
 }
 
-.js-trending .game-card__media {
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 150px;
-}
-
-.js-trending .game-card__media img {
-    height: 100%;
-}
-
 
 
 .recommend-slide {
@@ -2129,7 +2112,7 @@ a:hover {
     font-size: 24px;
 }
 .tour-slide__box img{
-    height: 400px;
+    height: 450px;
     width: 100%;
     object-fit: cover;
     border-radius: 10px;
@@ -2154,7 +2137,7 @@ a:hover {
     margin-bottom: 6px;
     flex-direction: column;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 15px;
     background-color: #fff;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
 }
@@ -2162,11 +2145,17 @@ a:hover {
 .game-card__media {
     display: block;
     position: relative;
-    height: 180px;
+    height: 180px;  
     overflow: hidden;
-    border-radius: 5px;
+    border-radius: 15px;
 }
-
+.game-card__media1{
+    display: block;
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+    border-radius: 15px;
+}
 .game-card__media img {
     -o-object-fit: cover;
     -o-object-position: top center;
@@ -2179,12 +2168,11 @@ a:hover {
     height: 100%;
     min-height: 100%;
     object-fit: cover;
-    object-position: top center;
     transform: translate(-50%, -50%);
 }
 
 .game-card__info {
-    padding: 6px;
+    padding: 6px ;
 }
 
 .game-card__title {
@@ -2197,7 +2185,6 @@ a:hover {
     line-height: 1.31;
     text-overflow: ellipsis;
     white-space: nowrap;
-    padding-top: 10px;
 }
 
 
@@ -2235,7 +2222,12 @@ a:hover {
     margin-left: 5px;
     color: #4aa138;
 }
-
+.game-card__priceContainer{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+}
 .game-card__rating-and-price {
     -webkit-box-align: center;
     -ms-flex-align: center;
@@ -2261,7 +2253,10 @@ a:hover {
     font-weight: bold;
     line-height: 1.31;
 }
-
+html .game-profile-card__type {
+    display: inline-block;
+    width: 100%;
+  }
 
 .game-card__rating .rating-vote {
     padding-left: 7px;
@@ -2355,6 +2350,130 @@ a:hover {
     width: 50%;
     max-width: 100px;
     max-height: 90px;
+}
+.game-profile-card {
+    display: block;
+    position: relative;
+    margin-bottom: 12px;
+    padding: 15px 15px 7px 15px;
+    border-radius: 5px;
+    background: #fff;
+  }
+  .game-profile-card__media {
+  display: block;
+  position: relative;
+}
+.game-profile-card__type {
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 15px 0 0 0;
+    padding: 0;
+    list-style-type: none;
+}
+.game-profile-card__type li {
+    margin: 0 8px 8px 0;
+}
+
+.game-profile-card__type li:last-child {
+    margin-right: 0;
+}
+.game-profile-card__list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    padding-bottom: 15px;
+}
+
+.game-profile-card__list li {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+}
+
+.game-profile-card__list li + li {
+    margin-top: 10px;
+}
+
+.game-profile-card__list li > *:first-child {
+    margin-right: 10px;
+    color: #767676;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1.31;
+}
+
+.game-profile-card__type li span {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 25px;
+    padding: 0 5px;
+    border-radius: 5px;
+    background: #F5F5F5;
+    color: #5F5F5F;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1.36;
+    text-transform: uppercase;
+}
+.game-profile-card__intro {
+    margin: 15px 0 20px 0;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 25px;
+    color: #353535;
+}
+.game-profile-price {
+    display: block;
+    position: relative;
+    margin-bottom: 12px;
+    padding: 15px;
+    border-radius: 5px;
+    background: #fff;
+}
+
+.game-profile-price__value {
+    margin: 20px 0;
+    color: #F46119;
+    font-size: 27px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.33;
+    text-align: center;
+}
+
+.game-profile-price .uk-button {
+    height: 50px;
+    font-size: 16px;
+    font-style: normal;
+    line-height: 1.31;
+}
+
+.game-profile-price .uk-button [class*='ico_'] {
+    margin-right: 10px;
+}
+
+.game-profile-price .uk-button + .uk-button {
+    margin-top: 8px;
 }
 
 .users-list {
@@ -4412,4 +4531,15 @@ html body.dark-theme .chat-user-list__head a.ico_edit {
 .youzify-group-avatar {
     border: 8px solid transparent;
     background-color: rgba(255, 255, 255, .35);
+}
+html .game-profile-card__type {
+    display: inline-block;
+    width: 100%;
+}
+
+
+html .game-profile-card__type li {
+    margin: 1%;
+    display: inline-block;
+    width: 46%;
 }
