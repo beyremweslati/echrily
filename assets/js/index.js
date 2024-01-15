@@ -10,15 +10,37 @@ function updatePage(data) {
     document.querySelector('.game-profile-card__type li:first-child span').textContent = data.tags[0].name;
     document.querySelector('.game-profile-card__type li:nth-child(2) span').textContent = data.genres[0].name;
     document.querySelector('.game-profile-card__type li:last-child span').textContent = data.tags[2].name;
-    document.querySelector('.game-profile-price__value').textContent = `${data.price} USD`;
-    
+
     const BigGalleryContainer = document.querySelector('.js-gallery-big.gallery-big');
+    const SmallgalleryContainer = document.querySelector('.js-gallery-small.gallery-small');
+
+    
     BigGalleryContainer.querySelector('.swiper-slide:nth-child(1) img').src = data.background_image;
     BigGalleryContainer.querySelector('.swiper-slide:nth-child(2) img').src = data.background_image_additional;
 
-    const SmallgalleryContainer = document.querySelector('.js-gallery-small.gallery-small');
     SmallgalleryContainer.querySelector('.swiper-slide:nth-child(1) img').src = data.background_image;
     SmallgalleryContainer.querySelector('.swiper-slide:nth-child(2) img').src = data.background_image_additional;
+
+    const localGameDataUrl = 'assets/DB/localGameData.json';
+    fetch(localGameDataUrl)
+    .then(response => response.json())
+    .then(localGameData => {
+
+        const localGame = localGameData.find(game => game.id === data.id);
+        document.querySelector('.game-profile-price__value').textContent = `${localGame.price} TND`;
+        document.querySelector('.game-profile-card__media img').src = localGame.banner;
+        if (localGame && localGame.additional_images.length >= 2) {
+            BigGalleryContainer.querySelector('.swiper-slide:nth-child(3) img').src = localGame.additional_images[0];
+            BigGalleryContainer.querySelector('.swiper-slide:nth-child(4) img').src = localGame.additional_images[1];
+
+            SmallgalleryContainer.querySelector('.swiper-slide:nth-child(3) img').src = localGame.additional_images[0];
+            SmallgalleryContainer.querySelector('.swiper-slide:nth-child(4) img').src = localGame.additional_images[1];
+        }
+    })
+    .catch(error => {
+        console.error('Error fetching local game data:', error);
+    });
+    
 }
 
 
@@ -45,9 +67,8 @@ function loadPage(targetPage) {
             runMainScript();
             document.querySelector('.page-main').addEventListener('click', function(event) {
                 const target = event.target.closest('a');
-                console.log(target);
                 // Check if the clicked element is an A tag with a specific class or other criteria
-                if (target.id === 'GameProfile') {
+                if (target != null && target.id === 'GameProfile') {
                     event.preventDefault(); // Prevent the default behavior of the link
                     const targetPage = target.getAttribute('href');
                     loadPage(targetPage); // Load the new page

@@ -2995,7 +2995,12 @@ body.dark-theme .uk-button-primary {
     background: #1A2634;
     color: #fff;
 }
-
+body.dark-theme .uk-button-primary:hover,
+body.dark-theme .uk-button-primary:focus,
+body.dark-theme .uk-button-primary:active,
+body.dark-theme .uk-button-primary.nice-select.open {
+    background-color: #4aa138;
+}
 body.dark-theme .uk-text-lead {
     color: #fff;
 }
@@ -3322,25 +3327,6 @@ body.dark-theme #modal-help ul li {
 }
 
 @media only screen and (max-width: 1199px) {
-
-
-
-
-
-
-    html .game-profile-card__list li > *:first-child {
-        margin-right: 0;
-        padding-bottom: 10px;
-    }
-
-
-    html .game-profile-card__list li {
-        display: inline-block;
-        display: inline-block;
-        display: inline-block;
-        align-items: center;
-        width: 100%;
-    }
 
     html .game-profile-price .uk-button {
         font-size: 13px;
@@ -3694,37 +3680,16 @@ body.dark-theme #modal-help ul li {
         justify-content: center;
         height: auto;
     }
-
-    .wallet-info {
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-    }
-
-    .payment-card {
-        height: 150px;
-        padding: 20px;
-    }
-
-    .payment-card__number {
-        margin: 15px 0;
-    }
-
-    .activities-item {
-        padding: 12px;
-    }
-
-    .activities-item__logo {
-        -webkit-box-flex: 0;
-        -ms-flex: 0 0 40px;
-        flex: 0 0 40px;
-        width: 40px;
-        height: 40px;
-    }
-
-    .gallery-small {
+    .gallery-small .swiper{
         display: none;
     }
+    .swiper{
+        padding: 20px 20px 0 20px;
+    }
+    .game-profile-card{
+        margin-top: 40px;
+    }
+
 }
 
 @media only screen and (max-width: 575px) {
@@ -3776,6 +3741,10 @@ body.dark-theme #modal-help ul li {
     .favourites-game .game-card__media {
         min-height: auto !important;
         max-height: none !important;
+    }
+    .swiper-slide img {
+        width: 100%;
+        height: auto;
     }
 }
 
@@ -4213,6 +4182,7 @@ html body.dark-theme #youzify-groups-list .action {
 
 html body.dark-theme .uk-button-danger {
     background: #F46119;
+    color: white;
 }
 
 

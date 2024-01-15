@@ -1,0 +1,38 @@
+[
+   {
+      "id": 662316,
+      "price": 60,
+      "banner": "assets/img/SP2.jpg",
+      "additional_images": [
+         "assets/img/SP2_1.jpg",
+         "assets/img/SP2_2.jpg"
+      ]
+   },
+   {
+      "id": 324997,
+      "price": 210,
+      "banner": "assets/img/BG3.jpg",
+      "additional_images": [
+         "assets/img/BG3_1.jpg",
+         "assets/img/BG3_2.jpg"
+      ]
+   },
+   {
+      "id": 795632,
+      "price": 210,
+      "banner": "assets/img/RE4.jpg",
+      "additional_images": [
+         "assets/img/RE4_1.jpg",
+         "assets/img/RE4_2.jpg"
+      ]
+   },
+   {
+      "id": 906547,
+      "price": 210,
+      "banner": "assets/img/HL.jpg",
+      "additional_images": [
+         "assets/img/HL_1.jpg",
+         "assets/img/HL_2.jpg"
+      ]
+   }
+]
