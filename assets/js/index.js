@@ -58,26 +58,32 @@ async function fetchGameDetails(gameId){
 }
 
 
-function loadPage(targetPage) {
+function loadPage(targetPage,previousPage) {
     fetch(targetPage)
         .then(response => response.text())
         .then(html => {
             // Replace the content of the main section with the loaded content
             document.querySelector('.page-main').innerHTML = html;
+            const backbutton = document.querySelector(".back");
+            if(backbutton){
+                backbutton.href = previousPage;
+            }
             runMainScript();
+            const currentPage = targetPage;
             document.querySelector('.page-main').addEventListener('click', function(event) {
                 const target = event.target.closest('a');
-                // Check if the clicked element is an A tag with a specific class or other criteria
                 if (target != null && target.id === 'GameProfile') {
-                    event.preventDefault(); // Prevent the default behavior of the link
+                    event.preventDefault(); 
                     const targetPage = target.getAttribute('href');
-                    loadPage(targetPage); // Load the new page
+                    loadPage(targetPage,currentPage); // Load the new page
                     if(target.getAttribute("data-game-id") != null){
                         const gameId = target.getAttribute("data-game-id");
                         fetchGameDetails(gameId);
                     }
                 }
             });
+            console.log(currentPage);
+            console.log(previousPage);
         })
         .catch(error => console.error('Error loading page:', error));
 }
@@ -94,19 +100,17 @@ function ActivateClass(targetPage){
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+    const currentPage = "Home.html";
     document.querySelector('.uk-nav').addEventListener('click', function (event) {
         event.preventDefault();
         const link = event.target.closest('a');
         if(link){
             const targetPage = link.getAttribute('href');
-            loadPage(targetPage);
+            loadPage(targetPage,currentPage);
             ActivateClass(targetPage);
         }  
     });
 
     loadPage("Home.html");
     ActivateClass("Home.html");
-
-    
-
 });
