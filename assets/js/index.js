@@ -2,7 +2,7 @@
 
 
 function updatePage(data) {
-    document.querySelector('h3.uk-text-lead').textContent = data.name;
+    document.querySelector('h3#gameTitle').textContent = data.name;
     document.querySelector('.game-profile-card__intro span').innerHTML = data.description;
     document.querySelector('.game-profile-card__list li:nth-child(2) div:nth-child(2)').textContent = data.released;
     document.querySelector('.game-profile-card__list li:nth-child(3) div:nth-child(2)').textContent = data.developers[0].name;
@@ -56,8 +56,30 @@ async function fetchGameDetails(gameId){
         console.error("Error fetching game details: ",error);
     }
 }
-
-
+async function fetchMarketPrices(gameId){
+    const localMarket = 'assets/DB/localMarketData.json';
+    fetch(localMarket)
+    .then(response => response.json())
+    .then(data => {
+        const gameData = data.find(game => game.gameTitle === gameId);
+        document.querySelector('.game-card__media2 img').src = gameData.ImgSrc;
+        document.querySelector('.game-profile-card__intro span').innerHTML = gameData.description;
+        document.querySelector('.game-profile-card__list li:nth-child(1) div:nth-child(2)').textContent = gameData.releaseDate;
+        document.querySelector('.game-profile-card__list li:nth-child(2) div:nth-child(2)').textContent = gameData.developer;
+        const optionsContainer = document.querySelector('.toggle');
+        optionsContainer.innerHTML = `
+            ${gameData.options.map((option,i) => `
+                <input id="input_${i}" type="radio" name="quantity" value="${option.price}" ${option.selected ? 'checked' : ''}>
+                <label for="input_${i}" class="radioLabel">${option.quantity} ${option.currency} </label><br>`).join('')}
+            `;
+        var quantityRadios = document.querySelectorAll('input[name="quantity"]');
+        quantityRadios.forEach(function(radio) {
+            radio.addEventListener('change', function() {
+                document.querySelector(".game-profile-price__value").innerHTML = `${this.value} TND`
+            });
+        });
+    })
+}
 function loadPage(targetPage,previousPage) {
     fetch(targetPage)
         .then(response => response.text())
@@ -75,15 +97,22 @@ function loadPage(targetPage,previousPage) {
                 if (target != null && target.id === 'GameProfile') {
                     event.preventDefault(); 
                     const targetPage = target.getAttribute('href');
-                    loadPage(targetPage,currentPage); // Load the new page
+                    loadPage(targetPage,currentPage);
                     if(target.getAttribute("data-game-id") != null){
                         const gameId = target.getAttribute("data-game-id");
                         fetchGameDetails(gameId);
                     }
                 }
+                if (target != null && target.id === 'GameMarket') {
+                    event.preventDefault(); 
+                    const targetPage = target.getAttribute('href');
+                    loadPage(targetPage,currentPage);
+                    if(target.getAttribute("data-game-id") != null){
+                        const gameId = target.getAttribute("data-game-id");
+                        fetchMarketPrices(gameId);
+                    }
+                }
             });
-            console.log(currentPage);
-            console.log(previousPage);
         })
         .catch(error => console.error('Error loading page:', error));
 }
