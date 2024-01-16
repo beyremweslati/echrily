@@ -473,6 +473,7 @@
       const [isDelegated, callable, typeEvent] = normalizeParameters(originalTypeEvent, handler, delegationFunction);
       const inNamespace = typeEvent !== originalTypeEvent;
       const events = getElementEvents(element);
+
       const storeElementEvent = events[typeEvent] || {};
       const isNamespace = originalTypeEvent.startsWith('.');
       if (typeof callable !== 'undefined') {
@@ -489,6 +490,7 @@
         }
       }
       for (const [keyHandlers, event] of Object.entries(storeElementEvent)) {
+
         const handlerKey = keyHandlers.replace(stripUidRegex, '');
         if (!inNamespace || originalTypeEvent.includes(handlerKey)) {
           removeHandler(element, events, typeEvent, event.callable, event.delegationSelector);

@@ -1,0 +1,44 @@
+[
+    {
+        "gameTitle": "League-of-Legends",
+        "description": "League of Legends is a fast-paced, competitive online game that blends the speed and intensity of an RTS with RPG elements. Two teams of powerful champions, each with a unique design and playstyle, battle head-to-head across multiple battlefields and game modes. With an ever-expanding roster of champions, frequent updates and a thriving tournament scene, League of Legends offers endless replayability for players of every skill level. ",
+        "ImgSrc":"assets/img/lol.jpg",
+        "options": [
+        { "quantity": 100, "price": 15},
+        { "quantity": 200, "price": 28},
+        { "quantity": 500, "price": 65},
+        { "quantity": 1000, "price": 120}
+        ],
+        "developer": "Riot Games",
+        "releaseDate": "2009-10-27",
+        "currency":"RP"
+    },
+    {
+        "gameTitle": "Fortnite",
+        "description": "Fortnite Battle Royale is the completely free 100-player PvP mode in Fortnite. One giant map. A battle bus. Fortnite building skills and destructible environments combined with intense PvP combat. The last one standing wins.",
+        "ImgSrc":"assets/img/fortnite.jpg",
+        "options": [
+        { "quantity": 1000, "price": 0.99},
+        { "quantity": 2000, "price": 1.99},
+        { "quantity": 5000, "price": 4.99},
+        { "quantity": 10000, "price": 9.99}
+        ],
+        "developer": "Epic Games",
+        "releaseDate": "2017-9-26",
+        "currency": "Vbucks"
+    },
+    {
+        "gameTitle": "Valorant",
+        "description": "VALORANT is your global competitive stage. It’s a 5v5 tac-shooter matchup to plant or defuse the Spike in a one-life-per-round, first to 13 series. More than guns and bullets, you’ll choose an Agent armed with adaptive, swift, and lethal abilities that create opportunities to let your gunplay shine. Creativity is your greatest weapon. The Agents Agents and their signature abilities are how you win with skill and style. Adapt and outplay in the role of either a Duelist, Initiator, Controller, or Sentinel.",
+        "ImgSrc":"assets/img/valorant.jpg",
+        "options": [
+        { "quantity": 1000, "price": 0.99},
+        { "quantity": 2000, "price": 1.99},
+        { "quantity": 5000, "price": 4.99},
+        { "quantity": 10000, "price": 9.99}
+        ],
+        "developer": "Riot Games",
+        "releaseDate": "2020-6-2",
+        "currency": "VP"
+    }
+]  

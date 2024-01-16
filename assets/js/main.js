@@ -1,46 +1,8 @@
-jQuery(document).ready(function ($) {
+
+function runMainScript() {
     $('.js-select').niceSelect();
-    $(document).on('click', '.menu-btn', function () {
-        $(this).toggleClass('is-active');
-        $('.sidebar').toggleClass('is-show');
-    });
-    const mediaHeader = window.matchMedia('(max-width: 959px)');
-
-    function handleHeader(e) {
-        if (e.matches) {
-            $('.menu-btn').removeClass('is-active');
-            $('.sidebar').removeClass('is-show');
-            $(document).on('click', '.menu-btn', function () {
-                $('body').toggleClass('no-scroll');
-            });
-        } else {
-            $('.menu-btn').addClass('is-active');
-            $('.sidebar').addClass('is-show');
-            $('body').removeClass('no-scroll');
-        }
-    }
-
-
-
-
-
-
-
-
-
-    /////////////////////////////////////////////////////////////////
-    // Preloader
-    /////////////////////////////////////////////////////////////////
-
-    var $preloader = $('#page-preloader'),
-        $spinner = $preloader.find('.spinner-loader');
-    $spinner.fadeOut();
-    $preloader.delay(250).fadeOut('slow');
-
-
-
-    mediaHeader.addListener(handleHeader);
-    handleHeader(mediaHeader);
+    
+    
     const recommendSlider = new Swiper('.js-recommend .swiper', {
         slidesPerView: 1,
         spaceBetween: 40,
@@ -167,4 +129,64 @@ jQuery(document).ready(function ($) {
             swiper: gallerySmall
         }
     });
+}
+
+jQuery(document).ready(function ($) {
+    runMainScript();
+    $(document).on('click', '.menu-btn', function () {
+        $(this).toggleClass('is-active');
+        $('.sidebar').toggleClass('is-show');
+    });
+    const mediaHeader = window.matchMedia('(max-width: 959px)');
+    function handleHeader(e) {
+        if (e.matches) {
+            $('.menu-btn').removeClass('is-active');
+            $('.sidebar').removeClass('is-show');
+            $(document).on('click', '.menu-btn', function () {
+                $('body').toggleClass('no-scroll');
+            });
+        } else {
+            $('.menu-btn').addClass('is-active');
+            $('.sidebar').addClass('is-show');
+            $('body').removeClass('no-scroll');
+        }
+    }
+    
+
+
+    mediaHeader.addListener(handleHeader);
+    handleHeader(mediaHeader);
+    /////////////////////////////////////////////////////////////////
+    // Preloader
+    /////////////////////////////////////////////////////////////////
+
+    var $preloader = $('#page-preloader'),
+        $spinner = $preloader.find('.spinner-loader');
+    $spinner.fadeOut();
+    $preloader.delay(250).fadeOut('slow');
+    document.addEventListener('DOMContentLoaded', function () {
+    // Array of games with their details
+    const games = [
+        { title: 'Game 1', image: 'game1.jpg', description: 'Description of Game 1.' },
+        { title: 'Game 2', image: 'game2.jpg', description: 'Description of Game 2.' },
+        // Add more games as needed
+    ];
+
+    // Function to update the content based on the selected game
+    function updateContent(index) {
+        document.getElementById('gameTitle').textContent = games[index].title;
+        document.getElementById('gameImage').src = games[index].image;
+        document.getElementById('gameDescription').innerHTML = `<p>${games[index].description}</p>`;
+    }
+
+    // Attach click event listeners to each game element
+    for (let i = 0; i < games.length; i++) {
+        const gameElement = document.getElementById(`game${i + 1}`);
+        if (gameElement) {
+            gameElement.addEventListener('click', function () {
+                updateContent(i);
+            });
+        }
+    }
+});
 });
