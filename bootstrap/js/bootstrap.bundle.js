@@ -428,8 +428,8 @@
     delete events[typeEvent][fn.uidEvent];
   }
   function removeNamespacedHandlers(element, events, typeEvent, namespace) {
-    const Store.htmlElementEvent = events[typeEvent] || {};
-    for (const [handlerKey, event] of Object.entries(Store.htmlElementEvent)) {
+    const storeElementEvent = events[typeEvent] || {};
+    for (const [handlerKey, event] of Object.entries(storeElementEvent)) {
       if (handlerKey.includes(namespace)) {
         removeHandler(element, events, typeEvent, event.callable, event.delegationSelector);
       }
@@ -454,11 +454,13 @@
       const [isDelegated, callable, typeEvent] = normalizeParameters(originalTypeEvent, handler, delegationFunction);
       const inNamespace = typeEvent !== originalTypeEvent;
       const events = getElementEvents(element);
-      const Store.htmlElementEvent = events[typeEvent] || {};
+
+      const storeElementEvent = events[typeEvent] || {};
       const isNamespace = originalTypeEvent.startsWith('.');
       if (typeof callable !== 'undefined') {
         // Simplest case: handler is passed, remove that listener ONLY.
-        if (!Object.keys(Store.htmlElementEvent).length) {
+        if (!Object.keys(storeElementEvent).length) {
+
           return;
         }
         removeHandler(element, events, typeEvent, callable, isDelegated ? handler : null);
@@ -469,7 +471,7 @@
           removeNamespacedHandlers(element, events, elementEvent, originalTypeEvent.slice(1));
         }
       }
-      for (const [keyHandlers, event] of Object.entries(Store.htmlElementEvent)) {
+      for (const [keyHandlers, event] of Object.entries(storeElementEvent)) {
         const handlerKey = keyHandlers.replace(stripUidRegex, '');
         if (!inNamespace || originalTypeEvent.includes(handlerKey)) {
           removeHandler(element, events, typeEvent, event.callable, event.delegationSelector);
@@ -3365,7 +3367,7 @@
 
           if (!areValidElements(reference, popper)) {
             return;
-          } // Store.html the reference and popper rects to be read by modifiers
+          } // Store the reference and popper rects to be read by modifiers
 
 
           state.rects = {
@@ -4493,7 +4495,7 @@
     }
     EventHandler.one(target, EVENT_SHOW$4, showEvent => {
       if (showEvent.defaultPrevented) {
-        // only register focus reStore.htmlr if modal will actually get shown
+        // only register focus restorer if modal will actually get shown
         return;
       }
       EventHandler.one(target, EVENT_HIDDEN$4, () => {
