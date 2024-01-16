@@ -70,7 +70,7 @@ async function fetchMarketPrices(gameId){
         optionsContainer.innerHTML = `
             ${gameData.options.map((option,i) => `
                 <input id="input_${i}" type="radio" name="quantity" value="${option.price}" ${option.selected ? 'checked' : ''}>
-                <label for="input_${i}" class="radioLabel">${option.quantity} ${option.currency} </label><br>`).join('')}
+                <label for="input_${i}" class="radioLabel">${option.quantity} ${gameData.currency} </label><br>`).join('')}
             `;
         var quantityRadios = document.querySelectorAll('input[name="quantity"]');
         quantityRadios.forEach(function(radio) {
