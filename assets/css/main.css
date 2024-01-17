@@ -2122,7 +2122,6 @@ a:hover {
     display: block;
     position: relative;
 }
-
 .game-card + .game-card {
     margin-top: 12px;
 }
@@ -2141,6 +2140,7 @@ a:hover {
     border-radius: 15px;
     background-color: #fff;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    height: 350px;
 }
 
 .game-card__media {
@@ -2629,14 +2629,16 @@ html .game-profile-card__type {
     height: 375px;
     width: 450px;
 }
-
+.options{
+    width: 90%;
+}
 .toggle {
     margin: 0 0 1.5rem;
     box-sizing: border-box;
     font-size: 0;
     display: flex;
     flex-flow: row wrap;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: stretch;
 }
 .toggle input {
@@ -2986,7 +2988,12 @@ html .game-profile-card__type {
     padding: 45px 30px;
 }
 
-
+.marketMediaContainer{
+    width: 33.33%;
+}
+.marketTextContainer{
+    width: 66.66%;
+}
 .games-list li {
     margin: 0 10px 10px 0;
     max-width: 75px;
@@ -3255,7 +3262,7 @@ body.dark-theme .recommend-slide {
     box-shadow: 0px 30px 70px rgba(0, 0, 0, 0.03);
 }
 
-body.dark-theme .game-card__box {
+body.dark-theme .game-card__box, body.dark-theme .currency-card__box{
     -webkit-box-shadow: 0px 30px 70px rgba(0, 0, 0, 0.03);
     background: #0C1826;
     box-shadow: 0px 30px 70px rgba(0, 0, 0, 0.03);
@@ -3268,7 +3275,13 @@ body.dark-theme .game-card__price,
 body.dark-theme .game-card__platform {
     color: #fff;
 }
-
+body.dark-theme .radioLabel{
+    background-color:#213140; 
+    border: 1px solid #213140;
+}
+body.dark-theme .radioLabel:hover{
+    border: 1px solid #6E6E6E;
+}
 body.dark-theme .widjet__body {
     -webkit-box-shadow: 0px 30px 70px rgba(0, 0, 0, 0.03);
     background: #0C1826;
@@ -3482,6 +3495,10 @@ body.dark-theme #modal-help ul li {
 
     .widjet-game-info {
         padding: 15px;
+    }
+    .currency-card__box{
+        height: 375px;
+        width: 350px;
     }
 
     .user-item__desc {
@@ -3733,6 +3750,24 @@ body.dark-theme #modal-help ul li {
     }
 }
 
+@media only screen and (max-width: 740px){
+    .market-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .game-row{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+    }
+    .currency-card__box{
+        height: 50%;
+        width: 100%;
+        margin: 10px;
+    }
+}
 @media only screen and (max-width: 639px) {
 
 
@@ -3807,6 +3842,13 @@ body.dark-theme #modal-help ul li {
     }
     .game-profile-card{
         margin-top: 40px;
+    }
+    .marketMediaContainer{
+        height: 300px;
+        width: 100%;
+    }
+    .marketTextContainer{
+        width: 100%;
     }
 
 }
