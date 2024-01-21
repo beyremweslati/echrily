@@ -89,6 +89,7 @@ function runMainScript() {
         slidesPerView: 1,
         spaceBetween: 20,
         loop: true,
+        loopedSlides: 5, // Number of slides in the loop, should match the total number of slides
         watchOverflow: true,
         observeParents: true,
         observeSlideChildren: true,
@@ -97,28 +98,29 @@ function runMainScript() {
         pagination: {
             el: '.js-gallery-small .swiper-pagination',
             type: 'bullets',
-            // 'bullets', 'fraction', 'progressbar'
             clickable: true
         },
         breakpoints: {
-            575: {
+            576: {
                 slidesPerView: 2,
                 spaceBetween: 20
             },
-            767: {
+            768: {
                 slidesPerView: 3,
                 spaceBetween: 20
             },
-            1599: {
-                slidesPerView: 4,
+            1600: {
+                slidesPerView: 5,
                 spaceBetween: 20
             }
         }
     });
+    
     const galleryBig = new Swiper('.js-gallery-big .swiper', {
         slidesPerView: 1,
         spaceBetween: 20,
         loop: true,
+        loopedSlides: 5, // Number of slides in the loop, should match the total number of slides
         watchOverflow: true,
         observeParents: true,
         observeSlideChildren: true,
@@ -128,6 +130,7 @@ function runMainScript() {
             swiper: gallerySmall
         }
     });
+    
 }
 
 jQuery(document).ready(function ($) {

@@ -38,5 +38,15 @@
       "id" : 846303,
       "price" : 170,
       "banner" : "assets/img/Cyberpunk.jpg"
+   },
+   {
+      "id" : 799265,
+      "price" : 190,
+      "banner" : "assets/img/TLOU1.jpg"
+   },
+   {
+      "id" : 50576,
+      "price" : 200,
+      "banner" : "assets/img/AtomicHeart.jpg"
    }
 ]
