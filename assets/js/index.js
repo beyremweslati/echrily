@@ -1,7 +1,31 @@
 
 
+const storeCache = {}
+async function fetchLocalGameData(gameId) {
+    if(storeCache[gameId]){
+        return storeCache[gameId];
+    }
+    const localGameDataUrl = 'assets/DB/localGameData.json';
 
-function updatePage(gameData,imgData) {
+    try {
+        const response = await fetch(localGameDataUrl);
+        const localGameData = await response.json();
+        const localGame = localGameData.find(game => game.id === gameId);
+        
+        if (localGame) {
+            storeCache[localGame.id] = localGame;
+            return localGame;
+        } else {
+            console.error('Local game data not found for the given game ID:', gameId);
+            return null;
+        }
+    } catch (error) {
+        console.error('Error fetching local game data:', error);
+        return null;
+    }
+}
+
+async function updatePage(gameData,imgData) {
     document.querySelector('h3#gameTitle').textContent = gameData.name;
     document.querySelector('.game-profile-card__intro span').innerHTML = gameData.description;
     document.querySelector('.game-profile-card__list li:nth-child(2) div:nth-child(2)').textContent = gameData.released;
@@ -29,27 +53,19 @@ function updatePage(gameData,imgData) {
         }
         
     }
-
-    const localGameDataUrl = 'assets/DB/localGameData.json';
-    fetch(localGameDataUrl)
-        .then(response => response.json())
-        .then(localGameData => {
-            const localGame = localGameData.find(game => game.id === gameData.id);
-            document.querySelector('.game-profile-price__value').textContent = `${localGame.price} TND`;
-            document.querySelector('.game-profile-card__media img').src = localGame.banner;
-
-        })
-        .catch(error => {
-            console.error('Error fetching local game data:', error);
-        });
-
+        
+    const localGame = await fetchLocalGameData(gameData.id); 
+    if (localGame) {
+        document.querySelector('.game-profile-price__value').textContent = `${localGame.price} TND`;
+        document.querySelector('.game-profile-card__media img').src = localGame.banner;
+    } 
 }
 
-const gameCache = {};
+const marketCache = {};
 
 async function fetchGameDetails(gameId) {
-    if(gameCache[gameId]){
-        return gameCache[gameId];
+    if(marketCache[gameId]){
+        return marketCache[gameId];
     }else{
         const apiKey = "143ba22c4abd40a39b65306fdb7a36ba";
         const apiUrl = `https://api.rawg.io/api/games/${gameId}?key=${apiKey}`;
@@ -59,7 +75,7 @@ async function fetchGameDetails(gameId) {
             const imgResponse = await fetch(apiImg)
             const gameData = await urlResponse.json();
             const imgData = await imgResponse.json();
-            gameCache[gameId] = {gameData , imgData};
+            marketCache[gameId] = {gameData , imgData};
             return {gameData , imgData}
         } catch (error) {
             console.error("Error fetching game details: ", error);
@@ -95,8 +111,8 @@ async function fetchMarketPrices(gameId) {
         console.error(error);
     }
 }
-function fillGameCards(){
-    const gameCards = document.querySelectorAll('.js-popular .swiper-slide');
+function fillGameCards(containerClass,subContainerClass){
+    const gameCards = document.querySelectorAll(`.${containerClass} .${subContainerClass}`);
     gameCards.forEach(async (card) => {
         const gameId = card.querySelector('.game-card__media a').getAttribute("data-game-id");
         const {gameData,imgData} = await fetchGameDetails(gameId);
@@ -110,6 +126,9 @@ function fillGameCards(){
                 card.querySelector(".game-card__info .game-card__genre span:nth-child(2)").textContent = "/";
                 card.querySelector(".game-card__info .game-card__genre span:nth-child(3)").textContent = gameData.tags[0].name;
             }
+            
+            const localGame = await fetchLocalGameData(gameData.id);
+            card.querySelector(".game-card__info .game-card__rating-and-price .game-card__price span").textContent = `${localGame.price} TND`;
         }
     })
 }
@@ -136,7 +155,10 @@ async function loadPage(targetPage, previousPage) {
 
         const currentPage = targetPage;
         if(currentPage == "Home.html"){
-            fillGameCards();
+            fillGameCards("js-popular","swiper-slide");
+        }
+        if(currentPage == "Store.html"){
+            fillGameCards("CardsContainer","Wrapper");
         }
         const pageMain = document.querySelector('.page-main');
         if (pageMain._clickHandler) {

@@ -89,7 +89,7 @@ function runMainScript() {
         slidesPerView: 1,
         spaceBetween: 20,
         loop: true,
-        loopedSlides: 5, // Number of slides in the loop, should match the total number of slides
+        loopedSlides: 5,
         watchOverflow: true,
         observeParents: true,
         observeSlideChildren: true,
@@ -100,6 +100,7 @@ function runMainScript() {
             type: 'bullets',
             clickable: true
         },
+
         breakpoints: {
             576: {
                 slidesPerView: 2,
@@ -110,8 +111,8 @@ function runMainScript() {
                 spaceBetween: 20
             },
             1600: {
-                slidesPerView: 5,
-                spaceBetween: 20
+                slidesPerView: 4,
+                spaceBetween: 10
             }
         }
     });
@@ -130,7 +131,6 @@ function runMainScript() {
             swiper: gallerySmall
         }
     });
-    
 }
 
 jQuery(document).ready(function ($) {

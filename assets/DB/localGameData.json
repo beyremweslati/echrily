@@ -48,5 +48,10 @@
       "id" : 50576,
       "price" : 200,
       "banner" : "assets/img/AtomicHeart.jpg"
+   },
+   {
+      "id": 494384,
+      "price" : 250,
+      "banner": "assets/img/GOW.jpg"
    }
 ]
