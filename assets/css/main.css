@@ -684,7 +684,7 @@ html #youzify-groups-list .item .item-title a {
     appearance: none;
     -webkit-box-shadow: 2px 2px 7px 0px #00000024;
     z-index: 5;
-    position: absolute;
+    position: fixed;
     bottom: 20px;
     right: 20px;
     width: 75px;
