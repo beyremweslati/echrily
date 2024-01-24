@@ -741,7 +741,7 @@ body.no-scroll {
     flex-direction: column;
     justify-content: space-between;
     min-width: 320px;
-    max-width: 1920px;
+    max-width: 100%;
     min-height: 100vh;
     margin: 0 auto;
     background: #F5F5F5;
@@ -1938,6 +1938,8 @@ a:hover {
     border-radius: 15px;
     background: #FFFFFF;
     box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.03);
+    min-height: 470px;
+    height: 40vh;
 }
 
 .recommend-slide__box {
@@ -2113,7 +2115,8 @@ a:hover {
     font-size: 24px;
 }
 .tour-slide__box img{
-    height: 450px;
+    min-height: 450px;
+    height: 38.6vh;
     width: 100%;
     object-fit: cover;
     border-radius: 10px;
@@ -2140,7 +2143,8 @@ a:hover {
     border-radius: 15px;
     background-color: #fff;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-    height: 350px;
+    min-height: 350px;
+    height: 30vh;
 }
 
 .game-card__media {
@@ -2610,7 +2614,7 @@ html .game-profile-card__type {
     display: flex;
     width: 100%;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-evenly;
     padding: 10px 0 30px 0;
 }
 .currency-card__box{
@@ -2626,8 +2630,9 @@ html .game-profile-card__type {
     border-radius: 15px;
     background-color: #fff;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-    height: 375px;
-    width: 450px;
+    height: 10%;
+    width: 30%; /* Adjust the width based on the number of columns */
+    margin: 0 10px; /* Adjust the margin between cards */
 }
 .options{
     width: 90%;
