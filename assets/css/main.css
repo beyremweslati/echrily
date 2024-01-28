@@ -2699,51 +2699,83 @@ html .game-profile-card__type {
 }
 }
 
-.user-info {
-    -webkit-box-pack: start;
-    -ms-flex-pack: start;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    display: -webkit-box;
-    display: -ms-flexbox;
+.helpContainer{
+    height: 850px;
+    display: flex;
+    flex-direction: column;
+}
+
+.contactContainer{
+    height: 35%;
+    display: flex;
+    justify-content: space-evenly;
+}
+.contactContainer > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    margin: 10px;
+}
+.circle{
+    height: 80px;
+    width: 80px;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
+    border-radius: 80%;
+    background-color: #f27b40;
+}
+.circle > img {
+    height: 45px;
+}
+.contactContainer > div > div:last-child{
+    display: flex;
+    margin-top: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.contactContainer > div > div:last-child h1, div:last-child h2{
+    margin: 5px 0 0 0;
+}
+.contactContainer > div > div:last-child h1{
+    color: #f27b40;
+}
+.contactContainer > h1 {
+    border: 1px solid white;
 }
 
-.user-info__avatar {
-    -webkit-box-flex: 0;
-    -ms-flex: 0 0 110px;
-    flex: 0 0 110px;
-    width: 110px;
-    height: 110px;
-    margin-right: 20px;
-    overflow: hidden;
-    border-radius: 50%;
+.formContainer{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    height: 60%;
 }
-
-.user-info__box {
-    display: block;
-    position: relative;
+.inputRow {
+    display: flex;
 }
-
-.user-info__title {
-    color: #353535;
-    font-size: 26px;
-    font-style: normal;
-    font-weight: normal;
-    line-height: 1.35;
+.inputRow input,
+.inputRow textarea {
+    background-color: #0C1826;
+    margin: 10px;
+    border: none;
+    border-radius: 3px;
+    padding-left: 20px;
+    color: white;
+    flex: 1;
 }
-
-.user-info__text {
-    margin-top: 0px;
-    color: #767676;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: normal;
-    line-height: 1.36;
+.inputRow input {
+    height: 45px;
 }
-
+.inputRow textarea {
+    padding-top: 20px;
+}
+input::placeholder,
+textarea::placeholder {
+    color: #ececec;
+}
 .widjet.--activity .widjet__body {
     padding: 15px;
 }
@@ -3917,6 +3949,27 @@ body.dark-theme #modal-help ul li {
     }
     #trending,#popular{
         margin-top: 40px;
+    }
+    .inputRow {
+        flex-direction: row; /* Change direction to horizontal */
+    }
+    .inputRow {
+        flex-direction: column;
+    }
+    .inputRow input,
+    .inputRow textarea {
+        flex: none;
+        width: calc(100% - 30px);
+    }
+    .helpContainer{
+        height: 1050px;
+    }
+    .contactContainer{
+        height: 40%;
+        margin: 30px 0 30px 0;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
     }
 }
 
