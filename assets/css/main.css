@@ -2725,7 +2725,8 @@ html .game-profile-card__type {
     align-items: center;
     justify-content: center;
     border-radius: 80%;
-    background-color: #f27b40;
+    background-color: #F5F5F5;
+    border: 3px solid #F46119;
 }
 .circle > img {
     height: 45px;
@@ -2758,12 +2759,12 @@ html .game-profile-card__type {
 }
 .inputRow input,
 .inputRow textarea {
-    background-color: #0C1826;
+    background-color: white;
     margin: 10px;
     border: none;
     border-radius: 3px;
     padding-left: 20px;
-    color: white;
+    color: black;
     flex: 1;
 }
 .inputRow input {
@@ -2774,7 +2775,7 @@ html .game-profile-card__type {
 }
 input::placeholder,
 textarea::placeholder {
-    color: #ececec;
+    color: #232323;
 }
 .widjet.--activity .widjet__body {
     padding: 15px;
@@ -4373,7 +4374,21 @@ html body.dark-theme .price-range label {
 html body.dark-theme .widjet-game__title a {
     color: #fff;
 }
-
+html body.dark-theme .inputRow input,
+html body.dark-theme .inputRow textarea{
+    background-color: #0C1826;
+}
+html body.dark-theme .inputRow input::placeholder,
+html body.dark-theme .inputRow textarea::placeholder{
+    color: #ececec;
+}
+html body.dark-theme .inputRow input[type="submit"]{
+    background-color: #F46119;
+}
+html body.dark-theme .contactContainer .circle{
+    background-color: #F46119;
+    border: none;
+}
 html body.dark-theme .widjet-game__game-name,
 html body.dark-theme .widjet-game__starting,
 html body.dark-theme .widjet-game__quantity {
