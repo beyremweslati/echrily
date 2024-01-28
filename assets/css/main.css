@@ -3960,7 +3960,7 @@ body.dark-theme #modal-help ul li {
     .inputRow input,
     .inputRow textarea {
         flex: none;
-        width: calc(100% - 30px);
+        width: calc(100% - 25px);
     }
     .helpContainer{
         height: 1050px;
