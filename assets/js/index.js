@@ -158,10 +158,10 @@ async function loadPage(targetPage, previousPage) {
         runMainScript();
 
         const currentPage = targetPage;
-        if (currentPage === "Home.html") {
+        if (currentPage === "home.html") {
             fillGameCards("js-popular", "swiper-slide");
         }
-        if (currentPage === "Store.html") {
+        if (currentPage === "store.html") {
             fillGameCards("CardsContainer", "Wrapper");
         }
 
@@ -250,7 +250,7 @@ function ActivateClass(targetPage) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    const currentPage = "Home.html";
+    const currentPage = "home.html";
     document.querySelector('.uk-nav').addEventListener('click', function (event) {
         event.preventDefault();
         const link = event.target.closest('a');
@@ -261,6 +261,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    loadPage("Home.html");
-    ActivateClass("Home.html");
+    loadPage("home.html");
+    ActivateClass("home.html");
 });
