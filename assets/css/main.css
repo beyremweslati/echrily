@@ -1938,8 +1938,12 @@ a:hover {
     border-radius: 15px;
     background: #FFFFFF;
     box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.03);
-    min-height: 470px;
-    height: 40vh;
+}
+.tour-slide__box img{
+    height: 450px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
 }
 
 .recommend-slide__box {
@@ -2114,13 +2118,7 @@ a:hover {
     color: #fff;
     font-size: 24px;
 }
-.tour-slide__box img{
-    min-height: 450px;
-    height: 38.6vh;
-    width: 100%;
-    object-fit: cover;
-    border-radius: 10px;
-}
+
 .game-card {
     display: block;
     position: relative;
@@ -2144,7 +2142,7 @@ a:hover {
     background-color: #fff;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
     min-height: 350px;
-    height: 30vh;
+    height: auto;
 }
 
 .game-card__media {
@@ -2754,6 +2752,10 @@ html .game-profile-card__type {
     text-align: center;
     height: 60%;
 }
+.formContainer h2 {
+    white-space: normal;
+}
+
 .inputRow {
     display: flex;
 }
@@ -3360,6 +3362,10 @@ body.dark-theme .user-info__text {
     color: #A1A1A1;
 }
 
+body.dark-theme .formContainer h2 {
+    white-space: normal;
+}
+
 body.dark-theme .my-game-item {
     background: #0C1826;
 }
@@ -3486,6 +3492,11 @@ body.dark-theme #modal-help ul li {
     color: #fff;
 }
 
+@media only screen and (min-width: 2048px){
+    .tour-slide__box img{
+        height: 550px;
+    }
+}
 @media only screen and (max-width: 1499px) {
     .user-item__desc {
         max-width: 130px;
@@ -3944,6 +3955,9 @@ body.dark-theme #modal-help ul li {
     .swiper-slide img {
         width: 100%;
         height: auto;
+    }
+    .recommend-slide{
+        padding: 0;
     }
     .swiper{
         padding: 20px 20px 20px 20px;
