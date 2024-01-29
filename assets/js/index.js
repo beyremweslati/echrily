@@ -58,8 +58,8 @@ async function updateContentWithGameData(gameData,imgData) {
     } 
 }
 
-const marketCache = {};
 // Fetching game data of the store page using RawgApi
+const marketCache = {};
 async function fetchGameDetails(gameId) {
     if(marketCache[gameId]){
         return marketCache[gameId];
