@@ -1259,11 +1259,74 @@ a:hover {
     right: 0;
     width: 8px;
     height: 8px;
-    border: 1px solid #FFFFFF;
+    border: 1px solid #ff0000;
     border-radius: 50%;
     background: #F46119;
 }
 
+.cartIconContainer{
+    position: relative;
+}
+.cartIconContainer span {
+    display: flex;
+    width: 18px;
+    height: 18px;
+    background-color: red;
+    justify-content: center;
+    align-items: center;
+    color: #FFF;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    right: -10px;
+}
+.empty-cart-message {
+    margin: 50px 10px 10px 10px;
+    text-align: center;
+    padding: 20px;
+}
+.empty-cart-heading{
+    color: #F46119;
+}
+.empty-cart-subHeading{
+    margin: 0;
+    color: #A6A6A6;
+}
+.cartContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 20px;
+}
+.cart-item{
+    display: flex;
+    justify-content: space-between;
+    height: 180px;
+    width: 100%;
+    align-items: center;
+    padding: 10px 0;
+    margin-top: 10px;
+    border-bottom: 1px solid #F2F2F2;
+}
+.cartItem__media{
+    display: block;
+    position: relative;
+    height: 175px;  
+    width: 30%;
+    overflow: hidden;
+}
+.cartItem__text{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    text-overflow: ellipsis;
+
+}
+.cartItem__media img{
+    height: auto;
+    width: 100%;
+    display: block;
+}
 .profile {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
@@ -1957,7 +2020,7 @@ html .game-profile-card__type {
     padding-top: 20px;
 }
 input::placeholder,
-textarea::placeholder {
+textarea::placeholder{
     color: #232323;
 }
 .marketMediaContainer{
@@ -2458,8 +2521,6 @@ body.dark-theme .game-profile-price__value {
     }
 }
 
-
-
 .sidebar-box .uk-nav li a [class*='ico_'] {
     font-size: 20px;
     margin-right: 9px;
@@ -2648,6 +2709,9 @@ body.dark-theme .sidebar-box .uk-nav li a.nice-select.open {
     background: #323446;
 }
 
+body.dark-theme .cartIcon {
+    filter: invert(1);
+}
 html body.dark-theme .game-card__genre {
     opacity: 0.7;
 }
