@@ -149,6 +149,7 @@ async function renderGameCard(card , gameData){
     card.querySelector(".game-card__info .game-card__rating-and-price .game-card__price span").textContent = `${localGame.price} TND`;
 } 
 
+
 function CartButtonListener(gameData){
     const buttonContainer = document.querySelector(".game-profile-price");
     buttonContainer.addEventListener('click', async (event) => {
@@ -159,6 +160,7 @@ function CartButtonListener(gameData){
         }
     })
 }
+
 function AddtoCart(Data){
     carts.push({
         id : Data.id,
@@ -170,58 +172,72 @@ function AddtoCart(Data){
     iconCartSpan.textContent = totalItems;
     AddtoMemory();
 }
-function removeFromCart(gameId){
-    const positionItem = carts.findIndex(item => item.id = gameId);
-    carts.splice(positionItem,1);
-    AddtoMemory();
-    displayCartItems();
-}
 function AddtoMemory(){
     localStorage.setItem('carts', JSON.stringify(carts));
 }
+
+function removeFromCart(gameId){
+    const positionItem = carts.findIndex(item => item.id == gameId);
+    if(positionItem >= 0) {
+        carts.splice(positionItem,1);
+        totalItems--;
+        iconCartSpan.textContent = totalItems;
+        AddtoMemory();
+        displayCartItems();
+    }
+}
+
 function displayCartItems() {
     const cartContainer = document.querySelector('.ItemsContainer');
     cartContainer.innerHTML = "";
     if(carts.length === 0){
-
-        const emptyCartMessage = document.createElement('div');
-        emptyCartMessage.classList.add('empty-cart-message');
-        
-        const img = document.createElement('img');
-        img.src = 'assets/img/icons/emptyCart.png';
-        img.alt = 'Empty Cart Image';
-        img.classList.add('cartIcon');
-        emptyCartMessage.appendChild(img);
-
-        const heading = document.createElement('h1');
-        heading.textContent = 'Your cart is currently empty!';
-        heading.classList.add('empty-cart-heading');
-        emptyCartMessage.appendChild(heading);
-
-        const subheading = document.createElement('h5');
-        subheading.classList.add('empty-cart-subHeading');
-        subheading.textContent = 'You must add some items before proceeding to checkout';
-        emptyCartMessage.appendChild(subheading);
-
-        cartContainer.appendChild(emptyCartMessage);
+        displayEmptyCartMessage(cartContainer);
     }else{
         carts.forEach(item => {
-            const newRow = document.createElement('div');
-            newRow.classList.add('cart-item');
-            newRow.innerHTML = `
-            <div class="cartItem__media">
-                <img src="${item.img}" alt="Game Image" class="">
-            </div>
-            <div class="cartItem__text">
-                <h3 class="game-card__title">${item.name}</h3>
-                <h4 class="game-card__price">${item.price} TND</h4>
-            </div>
-            <div class="cartItem__action" data-id="${item.id}">
-                <button class="uk-button uk-button-danger rmButton">Remove</button>
-            </div>`;
+            const newRow = createCartItemElement(item);
             cartContainer.appendChild(newRow);
         })
     }
+}
+function displayEmptyCartMessage(cartContainer){
+    
+    const emptyCartMessage = document.createElement('div');
+    emptyCartMessage.classList.add('empty-cart-message');
+    
+    const img = document.createElement('img');
+    img.src = 'assets/img/icons/emptyCart.png';
+    img.alt = 'Empty Cart Image';
+    img.classList.add('cartIcon');
+    emptyCartMessage.appendChild(img);
+
+    const heading = document.createElement('h1');
+    heading.textContent = 'Your cart is currently empty!';
+    heading.classList.add('empty-cart-heading');
+    emptyCartMessage.appendChild(heading);
+
+    const subheading = document.createElement('h5');
+    subheading.classList.add('empty-cart-subHeading');
+    subheading.textContent = 'You must add some items before proceeding to checkout';
+    emptyCartMessage.appendChild(subheading);
+
+    cartContainer.appendChild(emptyCartMessage);
+}
+
+function createCartItemElement(item){
+    const newRow = document.createElement('div');
+    newRow.classList.add('cart-item');
+    newRow.innerHTML = `
+        <div class="cartItem__media">
+            <img src="${item.img}" alt="Game Image" class="">
+        </div>
+        <div class="cartItem__text">
+            <h3 class="game-card__title">${item.name}</h3>
+            <h4 class="game-card__price">${item.price} TND</h4>
+        </div>
+        <div class="cartItem__action" data-id="${item.id}">
+            <button class="uk-button uk-button-danger rmButton">Remove</button>
+        </div>`;
+    return newRow;
 }
 async function loadPage(targetPage, previousPage) {
     try {
