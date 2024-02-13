@@ -44,7 +44,6 @@ function runMainScript() {
         pagination: {
             el: '.js-trending .swiper-pagination',
             type: 'bullets',
-            // 'bullets', 'fraction', 'progressbar'
             clickable: true
         }
     });
@@ -67,7 +66,6 @@ function runMainScript() {
         pagination: {
             el: '.js-popular .swiper-pagination',
             type: 'bullets',
-            // 'bullets', 'fraction', 'progressbar'
             clickable: true
         },
         breakpoints: {
@@ -121,7 +119,7 @@ function runMainScript() {
         slidesPerView: 1,
         spaceBetween: 20,
         loop: true,
-        loopedSlides: 5, // Number of slides in the loop, should match the total number of slides
+        loopedSlides: 5, 
         watchOverflow: true,
         observeParents: true,
         observeSlideChildren: true,
@@ -157,10 +155,8 @@ jQuery(document).ready(function ($) {
     mediaHeader.addListener(handleHeader);
     handleHeader(mediaHeader);
 
-    /////////////////////////////////////////////////////////////////
-    // Preloader
-    /////////////////////////////////////////////////////////////////
 
+    // Preloader
     var $preloader = $('#page-preloader'),
     $spinner = $preloader.find('.spinner-loader');
     $spinner.fadeOut();
