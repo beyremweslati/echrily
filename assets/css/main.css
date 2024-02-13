@@ -521,6 +521,7 @@ a:hover {
     border-radius: 50%;
     background-color: #ffffff;
     content: "";
+    transition: 0.2s ease;
 }
 
 .dark-theme {
