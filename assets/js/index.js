@@ -189,6 +189,8 @@ function removeFromCart(gameId){
 
 function displayCartItems() {
     const cartContainer = document.querySelector('.ItemsContainer');
+    const totalContainer = document.querySelector('.totalContainer');
+    totalContainer.innerHTML = "";
     cartContainer.innerHTML = "";
     if(carts.length === 0){
         displayEmptyCartMessage(cartContainer);
@@ -197,6 +199,8 @@ function displayCartItems() {
             const newRow = createCartItemElement(item);
             cartContainer.appendChild(newRow);
         })
+        const amount = calculateTotalAmount();
+        displayTotalAmount(totalContainer,amount);
     }
 }
 function displayEmptyCartMessage(cartContainer){
@@ -239,6 +243,22 @@ function createCartItemElement(item){
         </div>`;
     return newRow;
 }
+function displayTotalAmount(totalContainer,amount){
+    const firstDiv = document.createElement('div');
+    firstDiv.innerHTML = "<h1>Total: </h1>";
+    const secondDiv = document.createElement('div');
+    secondDiv.innerHTML = `<h1>${amount} TND</h1>`;
+    totalContainer.appendChild(firstDiv);
+    totalContainer.appendChild(secondDiv);
+}
+function calculateTotalAmount(){
+    let total = 0;
+    carts.forEach(item => {
+        total += item.price;
+    })
+    return total;
+}
+
 async function loadPage(targetPage, previousPage) {
     try {
         const html = await getPageHTML(targetPage);

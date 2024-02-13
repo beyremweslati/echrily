@@ -1294,9 +1294,30 @@ a:hover {
 }
 .cartContainer{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     margin: 20px;
+}
+.totalContainer{
+    display: flex;
+    width: 30%;
+    margin: 10px;
+    position: relative;
+    left: 70%;
+}
+.totalContainer div:first-child{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+}
+.totalContainer div:last-child{
+    width: 60%;
+}
+.totalContainer div:first-child h1{
+    color: #F46119;
+}
+.totalContainer div:last-child h1 {
+    color: #FFF;
 }
 .cart-item{
     display: flex;
