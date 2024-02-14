@@ -3,7 +3,7 @@ const pageCache = {};
 const storeCache = {};
 const marketCache = {};
 let carts = [];
-let iconCartSpan = document.querySelector('.cartIconContainer span');
+let iconCartSpan = document.querySelector('.mainCartIconContainer span');
 let totalItems = 0;
 async function fetchLocalGameData(gameId) {
     if(storeCache[gameId]){
@@ -388,7 +388,7 @@ document.addEventListener('DOMContentLoaded', function () {
         totalItems = carts.length;
         iconCartSpan.textContent = totalItems;
     }
-    document.querySelector(".cartIconContainer").addEventListener('click', function (event) {
+    document.querySelector(".mainCartIconContainer").addEventListener('click', function (event) {
         event.preventDefault();
         loadPage("cart.html", currentPage);
     });

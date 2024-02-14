@@ -1265,10 +1265,10 @@ a:hover {
     background: #F46119;
 }
 
-.cartIconContainer{
+.mainCartIconContainer{
     position: relative;
 }
-.cartIconContainer span {
+.mainCartIconContainer span {
     display: flex;
     width: 18px;
     height: 18px;
@@ -1280,6 +1280,9 @@ a:hover {
     position: absolute;
     top: 50%;
     right: -10px;
+}
+mainCartIcon{
+    width: 24px;
 }
 .empty-cart-message {
     margin: 50px 10px 10px 10px;
@@ -1299,20 +1302,13 @@ a:hover {
     justify-content: center;
     margin: 20px;
 }
-.totalContainer{
+.totalContainer {
     display: flex;
-    width: 30%;
-    margin: 10px;
-    position: relative;
-    left: 70%;
+    align-items: center; 
+    justify-content: flex-end;
 }
 .totalContainer div:first-child{
-    width: 40%;
-    display: flex;
-    justify-content: center;
-}
-.totalContainer div:last-child{
-    width: 60%;
+    margin-right: 10px;
 }
 .totalContainer div:first-child h1{
     color: #F46119;
@@ -1331,18 +1327,19 @@ a:hover {
     border-bottom: 1px solid #F2F2F2;
 }
 .cartItem__media{
-    display: block;
+    display: flex;
     position: relative;
     height: 175px;  
-    width: 30%;
+    width: 340px;
     overflow: hidden;
+    align-items: center;
 }
 .cartItem__text{
     display: flex;
     flex-direction: column;
     width: 50%;
     text-overflow: ellipsis;
-
+    margin-left: 20px;
 }
 .cartItem__media img{
     height: auto;
@@ -2458,7 +2455,26 @@ body.dark-theme .game-profile-price__value {
     .marketTextContainer{
         width: 100%;
     }
-
+    .cart-item{
+        flex-direction: column;
+        height: auto;
+    }
+    .cartItem__text{
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+        margin: 10px 0 10px 0;
+        white-space: nowrap;
+    }
+    .cartItem__text h3,h4{
+        margin: 0;
+    }
+    .cartItem__text h3{
+        margin-right: 60px;
+    }
+    .totalContainer{
+        justify-content: center;
+    }
 }
 
 @media only screen and (max-width: 575px) {
@@ -2540,6 +2556,15 @@ body.dark-theme .game-profile-price__value {
         flex-direction: column;
         align-items: center;
         justify-content: space-around;
+    }
+    .cartIcon{
+        height: 200px;
+    }
+    .empty-cart-heading{
+        font-size: 24px;
+    }
+    .empty-cart-subHeading{
+        font-size: 10px;
     }
 }
 
@@ -2731,7 +2756,7 @@ body.dark-theme .sidebar-box .uk-nav li a.nice-select.open {
     background: #323446;
 }
 
-body.dark-theme .cartIcon {
+body.dark-theme .cartIcon, body.dark-theme .mainCartIcon {
     filter: invert(1);
 }
 html body.dark-theme .game-card__genre {
