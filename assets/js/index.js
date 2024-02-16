@@ -2,7 +2,7 @@
 const pageCache = {};
 const storeCache = {};
 const marketCache = {};
-let carts = [];
+let cart = [];
 let iconCartSpan = document.querySelector('.mainCartIconContainer span');
 let totalItems = 0;
 async function fetchLocalGameData(gameId) {
@@ -162,7 +162,7 @@ function CartButtonListener(gameData){
 }
 
 function AddtoCart(Data){
-    carts.push({
+    cart.push({
         id : Data.id,
         name : Data.title,
         price : Data.price,
@@ -173,13 +173,13 @@ function AddtoCart(Data){
     AddtoMemory();
 }
 function AddtoMemory(){
-    localStorage.setItem('carts', JSON.stringify(carts));
+    localStorage.setItem('cart', JSON.stringify(cart));
 }
 
 function removeFromCart(gameId){
-    const positionItem = carts.findIndex(item => item.id == gameId);
+    const positionItem = cart.findIndex(item => item.id == gameId);
     if(positionItem >= 0) {
-        carts.splice(positionItem,1);
+        cart.splice(positionItem,1);
         totalItems--;
         iconCartSpan.textContent = totalItems;
         AddtoMemory();
@@ -189,18 +189,22 @@ function removeFromCart(gameId){
 
 function displayCartItems() {
     const cartContainer = document.querySelector('.ItemsContainer');
-    const totalContainer = document.querySelector('.totalContainer');
-    totalContainer.innerHTML = "";
+    const endCartContainer = document.querySelector('.endCartContainer');
+    const emailContainer = document.querySelector('.emailContainer');
+    endCartContainer.innerHTML = "";
     cartContainer.innerHTML = "";
-    if(carts.length === 0){
+    emailContainer.innerHTML = "";
+    if(cart.length === 0){
         displayEmptyCartMessage(cartContainer);
+        iconCartSpan.textContent = "0"
     }else{
-        carts.forEach(item => {
+        cart.forEach(item => {
             const newRow = createCartItemElement(item);
             cartContainer.appendChild(newRow);
         })
         const amount = calculateTotalAmount();
-        displayTotalAmount(totalContainer,amount);
+        displayEmailContainer(emailContainer);
+        displayTotalAmount(endCartContainer,amount);
     }
 }
 function displayEmptyCartMessage(cartContainer){
@@ -243,17 +247,29 @@ function createCartItemElement(item){
         </div>`;
     return newRow;
 }
-function displayTotalAmount(totalContainer,amount){
-    const firstDiv = document.createElement('div');
-    firstDiv.innerHTML = "<h1>Total: </h1>";
-    const secondDiv = document.createElement('div');
-    secondDiv.innerHTML = `<h1>${amount} TND</h1>`;
-    totalContainer.appendChild(firstDiv);
-    totalContainer.appendChild(secondDiv);
+async function displayTotalAmount(endCartContainer,amount){
+    const checkOutContainer = document.createElement('div');
+    checkOutContainer.innerHTML = "<button class='uk-button uk-button-danger requestButton'>Send Request</button>";
+    checkOutContainer.classList.add("checkOutContainer")
+    const totalContainer = document.createElement('div');
+    totalContainer.classList.add("totalContainer");
+    totalContainer.innerHTML = `
+    <div><h1>Total: </h1></div>
+    <div class='amount'><h1>${amount} TND</h1></div>
+    `;
+    endCartContainer.appendChild(checkOutContainer);
+    endCartContainer.appendChild(totalContainer);
+}
+function displayEmailContainer(emailContainer){
+    emailContainer.innerHTML = `
+    <div class="inputRow">
+        <input type="email" placeholder="E-mail" id="email">
+    </div>
+    `;
 }
 function calculateTotalAmount(){
     let total = 0;
-    carts.forEach(item => {
+    cart.forEach(item => {
         total += item.price;
     })
     return total;
@@ -383,9 +399,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     loadPage("home.html");
     ActivateClass("home.html");
-    if(localStorage.getItem('carts') != null){
-        carts = JSON.parse(localStorage.getItem('carts'));
-        totalItems = carts.length;
+    if(localStorage.getItem('cart') != null){
+        cart = JSON.parse(localStorage.getItem('cart'));
+        totalItems = cart.length;
         iconCartSpan.textContent = totalItems;
     }
     document.querySelector(".mainCartIconContainer").addEventListener('click', function (event) {

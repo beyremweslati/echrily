@@ -1302,6 +1302,16 @@ mainCartIcon{
     justify-content: center;
     margin: 20px;
 }
+.endCartContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.checkOutContainer{
+    display: flex;
+    justify-content: center;
+}
 .totalContainer {
     display: flex;
     align-items: center; 
