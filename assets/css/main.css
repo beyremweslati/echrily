@@ -2804,6 +2804,7 @@ html body.dark-theme .widjet-game__title a {
 html body.dark-theme .inputRow input,
 html body.dark-theme .inputRow textarea{
     background-color: #0C1826;
+    color: #fff;
 }
 html body.dark-theme .inputRow input::placeholder,
 html body.dark-theme .inputRow textarea::placeholder{
