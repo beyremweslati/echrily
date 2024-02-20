@@ -150,7 +150,7 @@ async function renderGameCard(card , gameData){
 } 
 
 
-function CartButtonListener(gameData){
+function addToCartButtonListener(gameData){
     const buttonContainer = document.querySelector(".game-profile-price");
     buttonContainer.addEventListener('click', async (event) => {
         const pos = event.target.closest('button'); 
@@ -186,7 +186,16 @@ function removeFromCart(gameId){
         displayCartItems();
     }
 }
-
+function initCheckOutListener(){
+    const cartContainer = document.querySelector(".cartContainer");
+    cartContainer.addEventListener("click", (event) => {
+        const rmBtn = event.target.closest("button"); 
+        if(rmBtn != null && rmBtn.classList.contains("rmButton")){
+            const gameContainer = event.target.parentNode;
+            removeFromCart(gameContainer.dataset.id);
+        }
+    })
+}
 function displayCartItems() {
     const cartContainer = document.querySelector('.ItemsContainer');
     const endCartContainer = document.querySelector('.endCartContainer');
@@ -292,14 +301,7 @@ async function loadPage(targetPage, previousPage) {
         }
         if (currentPage === "cart.html") {
             displayCartItems();
-            const cartContainer = document.querySelector(".cartContainer");
-            cartContainer.addEventListener("click", (event) => {
-                const rmBtn = event.target.closest("button"); 
-                if(rmBtn != null && rmBtn.classList.contains("rmButton")){
-                    const gameContainer = event.target.parentNode;
-                    removeFromCart(gameContainer.dataset.id);
-                }
-            })
+            initCheckOutListener();
         }
         setupClickHandler(currentPage);
     } catch (error) {
@@ -359,7 +361,7 @@ async function handleGameProfileClick(target, currentPage) {
         const gameId = target.getAttribute("data-game-id");
         const {gameData, imgData} = await fetchGameDetails(gameId);
         updateContentWithGameData(gameData, imgData);
-        CartButtonListener(gameData);
+        addToCartButtonListener(gameData);
     }
 }
 
