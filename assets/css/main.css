@@ -2485,6 +2485,9 @@ body.dark-theme .game-profile-price__value {
     .totalContainer{
         justify-content: center;
     }
+    .endCartContainer{
+        flex-direction: column;
+    }
 }
 
 @media only screen and (max-width: 575px) {
