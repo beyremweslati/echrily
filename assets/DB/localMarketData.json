@@ -1,8 +1,9 @@
 [
     {
-        "gameTitle": "League-of-Legends",
+        "id":0,
+        "title": "League-of-Legends",
         "description": "League of Legends is a fast-paced, competitive online game that blends the speed and intensity of an RTS with RPG elements. Two teams of powerful champions, each with a unique design and playstyle, battle head-to-head across multiple battlefields and game modes. With an ever-expanding roster of champions, frequent updates and a thriving tournament scene, League of Legends offers endless replayability for players of every skill level. ",
-        "ImgSrc":"assets/img/lol.jpg",
+        "banner":"assets/img/lol.jpg",
         "options": [
         { "quantity": 100, "price": 15},
         { "quantity": 200, "price": 28},
@@ -14,9 +15,10 @@
         "currency":"RP"
     },
     {
-        "gameTitle": "Fortnite",
+        "id":1,
+        "title": "Fortnite",
         "description": "Fortnite Battle Royale is the completely free 100-player PvP mode in Fortnite. One giant map. A battle bus. Fortnite building skills and destructible environments combined with intense PvP combat. The last one standing wins.",
-        "ImgSrc":"assets/img/fortnite.jpg",
+        "banner":"assets/img/fortnite.jpg",
         "options": [
         { "quantity": 1000, "price": 0.99},
         { "quantity": 2000, "price": 1.99},
@@ -28,9 +30,10 @@
         "currency": "Vbucks"
     },
     {
-        "gameTitle": "Valorant",
+        "id":2,
+        "title": "Valorant",
         "description": "VALORANT is your global competitive stage. It’s a 5v5 tac-shooter matchup to plant or defuse the Spike in a one-life-per-round, first to 13 series. More than guns and bullets, you’ll choose an Agent armed with adaptive, swift, and lethal abilities that create opportunities to let your gunplay shine. Creativity is your greatest weapon. The Agents Agents and their signature abilities are how you win with skill and style. Adapt and outplay in the role of either a Duelist, Initiator, Controller, or Sentinel.",
-        "ImgSrc":"assets/img/valorant.jpg",
+        "banner":"assets/img/valorant.jpg",
         "options": [
         { "quantity": 1000, "price": 0.99},
         { "quantity": 2000, "price": 1.99},
@@ -42,9 +45,10 @@
         "currency": "VP"
     },
     {
-        "gameTitle": "The-Finals",
+        "id":3,
+        "title": "The-Finals",
         "description": "Viewers at home, here's the news you've been waiting to hear: THE FINALS is accepting new contestants, and that means YOU! That's right, soon the world could be watching YOU tear apart our newest dynamic arenas and seize everlasting fame! As you know, THE FINALS is the world's greatest free-to-play combat game show! Our contestants plug in to our virtual world and join teams in escalating tournaments. They fight it out in our beautifully-rendered arenas based on real-world locations that they can alter, exploit, and even destroy. Sure, you can aim and shoot, but contestants that add our carefully curated virtual environments to their arsenal are more likely to advance, so do anything you can imagine in the name of victory! Burn arenas to the ground! Send wrecking balls crashing into your opponents! Don't just pull triggers - pull down buildings!",
-        "ImgSrc":"assets/img/TheFinals.jpg",
+        "banner":"assets/img/TheFinals.jpg",
         "options": [
         { "quantity": 200, "price": 0.99},
         { "quantity": 2000, "price": 1.99},

@@ -90,7 +90,7 @@ async function fetchMarketPrices(gameId) {
     try {
         const response = await fetch(localMarket);
         const data = await response.json();
-        const currencyData = data.find(game => game.gameTitle === gameId);
+        const currencyData = data.find(game => game.title === gameId);
         if(currencyData){
             return currencyData;
         }
@@ -102,7 +102,8 @@ async function fetchMarketPrices(gameId) {
 
 // updating currency values  
 function updateContentWithCurrencyData(currencyData){
-    document.querySelector('.game-card__media2 img').src = currencyData.ImgSrc;
+    
+    document.querySelector('.game-card__media2 img').src = currencyData.banner;
     document.querySelector('.game-profile-card__intro span').innerHTML = currencyData.description;
     document.querySelector('.game-profile-card__list li:nth-child(1) div:nth-child(2)').textContent = currencyData.releaseDate;
     document.querySelector('.game-profile-card__list li:nth-child(2) div:nth-child(2)').textContent = currencyData.developer;
@@ -150,22 +151,50 @@ async function renderGameCard(card , gameData){
 } 
 
 
-function addToCartButtonListener(gameData){
+function addToCartButtonListener(gameData,type){
     const buttonContainer = document.querySelector(".game-profile-price");
     buttonContainer.addEventListener('click', async (event) => {
         const pos = event.target.closest('button'); 
         if(pos != null && pos.classList.contains('addCart')){
-            const localGameData = await fetchLocalGameData(gameData.id);
-            AddtoCart(localGameData);
+            if(type == "game"){
+                const localGameData = await fetchLocalGameData(gameData.id);
+                const quantity = 1;
+                AddtoCart(localGameData, quantity,null);
+            }else{
+                const quantity = calculateTotalQuantity();
+                if(quantity != 0){
+                    const price = getPriceByQuantity(gameData,quantity);
+                    AddtoCart(gameData, quantity, price);
+                }
+                else{
+                    alert("Please select the amount you want to purchase!");
+                }
+            }
         }
     })
 }
 
-function AddtoCart(Data){
+function calculateTotalQuantity(){
+    const quantityRadios = document.querySelectorAll('input[name="quantity"]');
+    let selectedValue = 0;
+    quantityRadios.forEach(radio => {
+        if(radio.checked){
+            const label = document.querySelector(`label[for="${radio.id}"]`);
+            selectedValue = parseInt(label.textContent.trim().split(' ')[0]);
+        }
+    })
+    return selectedValue;
+}
+function getPriceByQuantity(data,quantity){
+    const option = data.options.find(opt => opt.quantity == quantity);
+    return option.price;
+}
+function AddtoCart(Data,quantity,price){
     cart.push({
         id : Data.id,
         name : Data.title,
-        price : Data.price,
+        quantity: quantity,
+        price : Data.price || price,
         img : Data.banner
     });
     totalItems++;
@@ -249,7 +278,7 @@ function createCartItemElement(item){
         </div>
         <div class="cartItem__text">
             <h3 class="game-card__title">${item.name}</h3>
-            <h4 class="game-card__price">${item.price} TND</h4>
+            <h4 class="game-card__price">${item.quantity} / ${item.price} TND</h4>
         </div>
         <div class="cartItem__action" data-id="${item.id}">
             <button class="uk-button uk-button-danger rmButton">Remove</button>
@@ -358,10 +387,11 @@ async function handleGameProfileClick(target, currentPage) {
     await loadPage(targetPage, currentPage);
 
     if (target.getAttribute("data-game-id") != null) {
+        const type = "game";
         const gameId = target.getAttribute("data-game-id");
         const {gameData, imgData} = await fetchGameDetails(gameId);
         updateContentWithGameData(gameData, imgData);
-        addToCartButtonListener(gameData);
+        addToCartButtonListener(gameData,type);
     }
 }
 
@@ -371,9 +401,11 @@ async function handleGameMarketClick(target, currentPage) {
     await loadPage(targetPage, currentPage);
 
     if (target.getAttribute("data-game-id") != null) {
+        const type = "currency";
         const gameId = target.getAttribute("data-game-id");
         const currencyData = await fetchMarketPrices(gameId);
         updateContentWithCurrencyData(currencyData);
+        addToCartButtonListener(currencyData,type);
     }
 }
 
